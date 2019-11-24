@@ -1,0 +1,82 @@
+<% content_for :meta_title, "#{@milestone.title.capitalize} - #{DEFAULT_META["meta_product_name"]}" %>
+<div class="container-main">
+  <div class="trophypopup trophyoverlay">
+
+<!--     <a class="close" href="#">&times;</a>
+ -->    <div class="trophycontent content-wrap style-text-trophy">
+      <% @trophies.each do |trophy| %>
+        <%= trophy.name %>
+        <div style="background: #E4E4E4;black;" class="trophy-image">
+          <img style="width: 50px;" class="trophy-popup" src=<%= trophy.image %> alt="Trophy">
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="card-pomodoro">
+    <div class="scroll-effect">
+      <div class="card-large">
+        <div class="card-pomodoro-inner">
+          <h3>Great Job!</h3>
+          <p>This session was <%= @pomodoro.time %> long and you have worked on
+            <%= @entry.goal.split.map(&:capitalize).join(' ') %>
+            for
+            <%= @milestone.time %> total.</p>
+            <p>How was the quality of your focus?</p>
+          <%= @milestone.stars %>
+          <%= simple_form_for [@pomodoro] do |f| %>
+            <div class="feedback">
+              <div class="rating">
+                <input type="radio" name="stars" id="rating-5" value="5">
+                <label for="rating-5"></label>
+                <input type="radio" name="stars" id="rating-4" value="4">
+                <label for="rating-4"></label>
+                <input type="radio" name="stars" id="rating-3" value="3">
+                <label for="rating-3"></label>
+                <input type="radio" name="stars" id="rating-2" value="2">
+                <label for="rating-2"></label>
+                <input type="radio" name="stars" id="rating-1" value="1">
+                <label for="rating-1"></label>
+                </div>
+            </div>
+          </div>
+          <div class="button-center">
+          <%= f.submit "Submit", class: "form-submit button-main-small" %>
+        <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+</div>
+</div>
+
+<div style="margin-bottom:40px;">
+
+</div>
+
+
+<!-- Try a focus session for another milestone under this entry: Or go back to your journal. -->
+
+<script>
+  <% unless @trophies.empty? %>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      setTimeout(() => {
+        document.querySelectorAll(".trophypopup").forEach((div) => {
+          div.classList.remove("trophyoverlay");
+        });
+      }, 1500);
+
+      const cross = document.querySelector('.close');
+      cross.addEventListener("click", (event) => {
+        document.querySelectorAll(".trophypopup").forEach( (div) => {
+          div.classList.add("trophyoverlay");
+        });
+      });
+    });
+  <% end %>
+</script>

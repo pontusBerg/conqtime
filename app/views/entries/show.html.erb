@@ -1,0 +1,20 @@
+
+<div class="container-main">
+<% content_for :meta_title, "#{@entry} #{DEFAULT_META["meta_product_name"]}" %>
+
+<div class="scroll-effect">
+<div class="card-large">
+<h3><%= @entry.goal.split.map(&:capitalize).join(' ') %></h3>
+<div class="card-large-group">
+<h3 style=";"> <%= @milestone.title.split.map(&:capitalize).join(' ') %>
+<%= @entry.entry_minutes %></h3>
+<%= simple_form_for([@milestone, Pomodoro.new]) do |m| %>
+          <!-- <i class="far fa-clock"></i> -->
+          <%= button_tag do %>
+          <i class="far fa-clock"></i>
+          <% end %>
+          <% end %>
+  </div>
+</div>
+</div>
+</div>

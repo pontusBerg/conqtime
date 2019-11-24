@@ -1,0 +1,32 @@
+
+      <div class="container-main">
+        <div class="card-journal-wrap">
+      <div class="card-journal-entries">
+      <% title "New Journal Entry" %>
+          <h2 class="card-entries-title"><%= @journal.title.capitalize %></h2>
+
+        <%= simple_form_for [@journal, @entry] do |m| %>
+          <%= m.input :goal %>
+          <i class="fas fa-arrow-right form-submit submit-entry"></i>
+        </div>
+
+        <div class="card-journal-milestones">
+        <h2>Milestones</h2>
+        <p><br> List up to 3 actions, habits, or benchmarks that will bring you closer to your goal.</p>
+
+        <%= m.simple_fields_for :milestones do |p| %>
+        <%= p.input :title, :class => "form-textfield-milestone" %>
+      <% end %>
+      <%= m.simple_fields_for :milestones do |p| %>
+      <%= p.input :title, label: false, :class => "form-textfield-milestone" %>
+    <% end %>
+    <%= m.simple_fields_for :milestones do |p| %>
+    <%= p.input :title, label: false, :class => "form-textfield-milestone" %>
+  <% end %>
+  <div class="btn-area">
+  <%= m.submit "Create", :class => "form-submit button-main-small"%>
+</div>
+<% end %>
+</div>
+</div>
+</div>
